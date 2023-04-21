@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:p="http://www.springframework.org/schema/p"
+
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+                      http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+  <bean id="eventPropertyExample" class="com.spring.training.model.Event">
+    <property name="id" value="111111111"/>
+    <property name="title" value="eventTitle"/>
+    <property name="date" value="May 04 09:51:52 CDT 2009"/>
+  </bean>
+
+  <bean id="the_P_example" class="com.spring.training.model.Event"
+    p:id="111111"
+    p:title="P_title"
+    p:date="May 04 09:51:52 CDT 2009"/>
+
+</beans>

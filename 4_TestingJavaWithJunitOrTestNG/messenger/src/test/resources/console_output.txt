@@ -1,0 +1,88 @@
+> Task :compileJava UP-TO-DATE
+> Task :processResources UP-TO-DATE
+> Task :classes UP-TO-DATE
+> Task :compileTestJava UP-TO-DATE
+> Task :processTestResources
+> Task :testClasses
+
+> Task :test
+
+ConsoleServiceImplTest > throws IllegalArgumentException when bad argument PASSED
+
+ConsoleServiceImplTest > Don't throws IllegalArgumentException when are correct PASSED
+
+ConsoleServiceImplTest > is prepareSendLetter() return correct reply when arguments are correct PASSED
+
+ConsoleServiceImplTest > is prepareSendLetter() invoke sendMessage() when arguments are correct PASSED
+
+FileServiceImplTest > 1st dynamic test PASSED
+
+FileServiceImplTest > 2st dynamic test PASSED
+
+FileServiceImplTest > 3rd dynamic test PASSED
+
+FileServiceImplTest > 4rd dynamic test PASSED
+
+FileServiceImplTest > 5rd dynamic test PASSED
+
+FileServiceImplTest > 6rd dynamic test PASSED
+
+FileServiceImplTest > 7rd dynamic test PASSED
+
+FileServiceImplTest > 8rd dynamic test PASSED
+
+FileServiceImplTest > 9rd dynamic test PASSED
+
+FileServiceImplTest > verifying that sendMessage() work correct PASSED
+
+FileServiceImplTest > 1st dynamic test PASSED
+
+FileServiceImplTest > 2st dynamic test PASSED
+
+FileServiceImplTest > 3th dynamic test PASSED
+
+MessengerTest > Is sentMessage() work correct PASSED
+
+WorkChooserImplTest > invoke FileServer when argument is correct PASSED
+
+WorkChooserImplTest > don't invoke FileServer when argument is context PASSED
+
+WorkChooserImplTest > throws IllegalArgumentException when bad argument PASSED
+
+WorkChooserImplTest > throws IllegalArgumentException when bad argument PASSED
+
+WorkChooserImplTest > don't invoke FileServer when ConsoleService are invoking PASSED
+
+WorkChooserImplTest > invoke ConsoleService when argument is context PASSED
+
+TemplateEngineTest > 1st dynamic test PASSED
+
+TemplateEngineTest > 2nd dynamic test PASSED
+
+TemplateEngineTest > 2rd dynamic test PASSED
+
+TemplateEngineTest > 4th dynamic test PASSED
+
+TemplateEngineTest > 5th dynamic test PASSED
+
+TemplateEngineTest > 6th dynamic test PASSED
+
+TemplateEngineTest > 7th dynamic test PASSED
+
+TemplateEngineTest > 8th dynamic test PASSED
+     [move] Moving 12 files to C:\Users\Dzmitry_Darashuk\Desktop\courses\Mentoring\4_TestingJavaWithJunitOrTestNG\messenger\build\classes\java
+     [move] Moving 6 files to C:\Users\Dzmitry_Darashuk\Desktop\courses\Mentoring\4_TestingJavaWithJunitOrTestNG\messenger\build\classes\java
+
+> Task :jacocoTestReport
+[ant:jacocoReport] Classes in bundle 'messenger' do no match with execution data. For report generation the same class files must be used as at runtime.
+[ant:jacocoReport] Execution data for class com/epam/ld/module2/testing/consoleMode/ConsoleServiceImpl does not match.
+[ant:jacocoReport] Execution data for class com/epam/ld/module2/testing/fileMode/FileServiceImpl does not match.
+[ant:jacocoReport] Execution data for class com/epam/ld/module2/testing/MailServer does not match.
+[ant:jacocoReport] Execution data for class com/epam/ld/module2/testing/service/WorkChooserImpl does not match.
+[ant:jacocoReport] Execution data for class com/epam/ld/module2/testing/Messenger does not match.
+[ant:jacocoReport] Execution data for class com/epam/ld/module2/testing/template/Template does not match.
+[ant:jacocoReport] Execution data for class com/epam/ld/module2/testing/template/TemplateEngine does not match.
+[ant:jacocoReport] Execution data for class com/epam/ld/module2/testing/Client does not match.
+
+BUILD SUCCESSFUL in 8s
+6 actionable tasks: 3 executed, 3 up-to-date

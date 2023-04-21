@@ -1,0 +1,16 @@
+Gradle:
+
+1. To build project and generate a .jar for 'admin' project,
+   and .war for 'web' project please run 'gradle build' in terminal
+
+2. Details about how to run tests : the result of tests you could see in the log after building an artifact.
+   Also, you might want to run test script - please run 'gradle test' in terminal
+
+
+Maven:
+
+1. To build project and generate a .jar for 'admin' project,
+   and .war for 'web' project please run 'mvn clean install' in terminal
+
+2. You can find the Maven tool project here:   https://github.com/itDarashukD/Gradle_and_Maven.git  ,
+   'Gradle_multi_module_progect'  - branch.

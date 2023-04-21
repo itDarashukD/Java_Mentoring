@@ -1,0 +1,16 @@
+{
+  "accessForUrls": {
+    "ADMIN": [
+      "http://onLy/admin/access.com",
+      "http://admin/and/developer/access.com",
+      "http://admin/and/developer/and/user/access.com"
+    ],
+    "DEVELOPER": [
+      "http://admin/and/developer/access.com",
+      "http://admin/and/developer/and/user/access.com"
+    ],
+    "USER": [
+      "http://admin/and/developer/and/user/access.com"
+    ]
+  }
+}

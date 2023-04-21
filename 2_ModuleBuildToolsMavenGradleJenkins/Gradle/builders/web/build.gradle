@@ -1,0 +1,45 @@
+plugins {
+    id 'war'
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'com.builders.web.HelloServlet'
+    }
+}
+task fatJar(type: Jar) {
+    classifier = 'all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
+allprojects {
+    group = 'com.example.gradle'
+    version = '0.1.0-SNAPSHOT-WEB'
+}
+
+repositories {
+    mavenCentral()
+    dependencies {
+        testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+        testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+        compileOnly 'jakarta.servlet:jakarta.servlet-api:6.0.0'
+
+        implementation project(':services')
+        implementation project(':utils')
+    }
+}
+
+
+
+
+test {
+    useJUnitPlatform()
+
+    test {
+        testLogging {
+            events "passed", "skipped", "failed", "standardOut", "standardError"
+        }
+    }
+}
+

@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: booking-service
+
+
+  profiles:
+    active : dev
+
+server:
+  port: 8082
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile:  dev
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/booking
+    username: postgres
+    password: root
+
+
+#  ActiveMq :
+  activemq:
+    in-memory: false
+    pool:
+      enabled: false
+    user: admin
+    password: admin
+    queue:
+      bookTicket : ticketBooking
+      createEvent : eventCreating
+    broker-url: tcp://localhost:61616

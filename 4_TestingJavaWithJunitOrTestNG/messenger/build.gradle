@@ -1,0 +1,117 @@
+plugins {
+    id 'java'
+    id 'idea'
+    id 'checkstyle'
+    id 'pmd'
+    id 'com.bmuschko.clover' version "2.2.5"
+    id "application"
+
+}
+compileJava {options.encoding = "UTF-8"}
+compileTestJava {options.encoding = "UTF-8"}
+
+ext {
+    javaMainClass = "com.epam.ld.module2.testing.Application"
+}
+
+application {
+    mainClassName = javaMainClass
+}
+
+
+repositories {
+    mavenCentral()
+}
+//-----------------------------BASE CONFIGURATION--------------------------------------------
+clover {
+
+    testIncludes = ['**/*Test.java', '**/*Spec.groovy']
+    testExcludes = ['**/Mock*.java']
+
+    targetPercentage = '75%'
+
+    report {
+        html = true
+        pdf = true
+
+        columns {
+            coveredMethods format: 'longbar', min: '75'
+            coveredStatements format: '%'
+            coveredBranches format: 'raw'
+            totalPercentageCovered format: '%', scope: 'package'
+        }
+
+    }
+}
+dependencies {
+    clover 'org.openclover:clover:4.4.1'
+    testImplementation('org.junit.jupiter:junit-jupiter:5.9.0')
+    testImplementation ('org.junit.jupiter:junit-jupiter-engine:5.9.0')
+    testImplementation('org.junit.platform:junit-platform-launcher:1.9.0')
+    testImplementation('org.junit.vintage:junit-vintage-engine:5.9.0')
+    implementation group: 'org.apache.commons', name: 'commons-lang3', version: '3.12.0'
+    implementation group: 'org.apache.directory.studio', name: 'org.apache.commons.io', version: '2.4'
+    implementation group: 'org.projectlombok', name: 'lombok', version: '1.18.24'
+
+    testImplementation 'org.mockito:mockito-inline:4.8.0'
+    testImplementation 'org.mockito:mockito-junit-jupiter:4.8.0'
+    testImplementation 'org.mockito:mockito-core:4.8.0'
+
+    implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.11'
+    implementation group: 'ch.qos.logback', name: 'logback-core', version: '1.2.11'
+    implementation group: 'org.slf4j', name: 'slf4j-api', version: '1.7.36'
+// https://mvnrepository.com/artifact/com.google.guava/guava
+    implementation group: 'com.google.guava', name: 'guava', version: '31.1-jre'
+
+
+
+}
+
+
+
+test {
+    useJUnitPlatform ()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}
+
+checkstyle {
+    toolVersion "7.6.1"
+    checkstyleTest.enabled = false
+}
+
+check.dependsOn cloverGenerateReport
+
+
+pmd {
+    ignoreFailures = true
+    pmdTest.enabled=false
+    ruleSets = [
+            'java-basic',
+            'java-braces',
+            'java-clone',
+            'java-codesize',
+            'java-comments',
+            'java-controversial',
+            'java-coupling',
+            'java-design',
+            'java-empty',
+            'java-finalizers',
+            'java-imports',
+            'java-optimizations',
+            'java-strictexception',
+            'java-strings',
+            'java-typeresolution',
+            'java-unnecessary',
+            'java-unusedcode'
+    ]
+}
+
+tasks.withType(Pmd) {
+    reports{
+        xml.enabled=true
+        html.enabled=true
+    }
+}
+

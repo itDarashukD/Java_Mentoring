@@ -1,0 +1,64 @@
+spring:
+  application:
+    name: proxy-zuul-gate
+
+  profiles:
+    active: dev
+
+---
+spring:
+  config:
+    activate.on-profile: dev
+server:
+  port: 8091
+
+zuul:
+  routes:
+    #    for this service :
+    client-service:
+      #      all requests that will starts with  /client/** -->   :
+      path: /client/**
+      #      will redirect to (client-service) to url :
+      url: http://localhost:8087/
+
+    second-client-service:
+      path: /second/**
+      url: http://localhost:8085/
+
+  #example : http://localhost:8080/client/foos
+  #example : http://localhost:8080/client/foos/3
+  #example : http://localhost:8080/second/controller/hello
+  #example : http://localhost:8080/second/find/4
+
+  main:
+    allow-circular-references: true
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+  instance:
+    preferIpAddress: true
+
+---
+spring:
+  config:
+    activate.on-profile: docker
+
+zuul:
+  routes:
+    #    for this service :
+    client-service:
+      #      all requests that will starts with  /client/** -->   :
+      path: /client/**
+      #      will redirect to (client-service) to url :
+      url: http://192.168.99.111:8087/
+
+    second-client-service:
+      path: /second/**
+      url: http://192.168.99.111:8085/
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://192.168.99.111:8761/eureka}

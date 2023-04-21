@@ -1,0 +1,81 @@
+version: "3.7"
+services:
+  eureka-server:
+    image: itdarashukd/eureka-server1:latest
+    container_name: app_eureka-server
+    volumes:
+      - .:/data/app_eureca-server
+    ports:
+      - "8761:8761"
+    restart: unless-stopped
+
+  eureka-client:
+    image: itdarashukd/eureka-client1:latest
+    container_name: app_eureka-client
+    volumes:
+      - .:/data/app_eureka-client
+    ports:
+      - "8089:8089"
+    restart: always
+    depends_on:
+      - eureka-server
+
+  feign:
+    image: itdarashukd/feign1:latest
+    container_name: app_feign
+    volumes:
+      - .:/data/app_feign
+    ports:
+      - "8081:8081"
+    restart: always
+    depends_on:
+      - eureka-server
+
+  zuul:
+    image: itdarashukd/zuul1:latest
+    container_name: app_zuul
+    volumes:
+      - .:/data/app_zuul
+    ports:
+      - "8091:8091"
+    restart: always
+    depends_on:
+      - eureka-server
+
+  client-service:
+    image: itdarashukd/client-service1:latest
+    container_name: app_client_service
+    volumes:
+      - .:/data/app_client_service
+    ports:
+      - "8087:8087"
+    restart: always
+    depends_on:
+      - eureka-server
+      - zuul
+
+  second-client-service:
+    image: itdarashukd/second-client-service1:latest
+    container_name: app_second_client_service
+    volumes:
+      - .:/data/app_second_client_service
+    ports:
+      - "8085:8085"
+    restart: always
+    depends_on:
+      - eureka-server
+      - zuul
+
+  one:
+    image: itdarashukd/one1:latest
+    container_name: app_one
+    volumes:
+      - .:/data/app_one
+    ports:
+      - "8093:8093"
+    restart: always
+    depends_on:
+      - eureka-server
+
+volumes:
+  app_data_volumes:

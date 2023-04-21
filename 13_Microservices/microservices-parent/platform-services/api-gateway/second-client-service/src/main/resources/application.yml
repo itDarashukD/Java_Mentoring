@@ -1,0 +1,31 @@
+spring:
+  application:
+    name: second-client-service
+  profiles:
+    active: dev
+
+---
+spring:
+  config:
+    activate.on-profile: dev
+
+server:
+  port: 8085
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+  instance:
+    preferIpAddress: true
+
+
+---
+spring:
+  config:
+    activate.on-profile: docker
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://192.168.99.111:8761/eureka}

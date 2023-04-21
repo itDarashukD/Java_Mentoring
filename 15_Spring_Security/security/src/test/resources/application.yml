@@ -1,0 +1,18 @@
+
+---
+spring:
+  config:
+    activate:
+      on-profile: test
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/security
+    username: postgres
+    password: root
+
+
+# Security enable/disable
+security:
+  basic:
+    enabled: false

@@ -1,0 +1,26 @@
+---
+
+spring:
+  profiles: integration-test
+
+  datasource:
+    driver-class-name: org.hsqldb.jdbc.JDBCDriver
+    url: jdbc:hsqldb:mem:localdb;sql.syntax_pgs=true;DB_CLOSE_DELAY=-1
+    username:
+    password:
+    initialize: true
+    platform: hsqldb
+
+sql:
+  syntax_pgs: true
+  lowercase_ident=true:
+
+maxThreadPoolSize: 2
+tableCount: 2
+columnsCount: 2
+typeCount: 2
+desireRowCount: 2
+desireNumberOfTableToInserts: 4
+
+
+---

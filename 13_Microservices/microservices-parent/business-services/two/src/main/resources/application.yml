@@ -1,0 +1,16 @@
+spring:
+  profiles:
+    active: dev
+
+  application:
+    name: spring-cloud-eureka-client-two
+
+server:
+  port: 8095
+
+---
+spring:
+  config:
+    activate.on-profile: dev
+
+

@@ -1,0 +1,39 @@
+#!/usr/bin/env groovy
+
+pipeline {
+    agent any
+    triggers {
+        pollSCM '* * * * *'
+    }
+    stages {
+        stage('Build1') {
+            steps {
+                echo 'Building..'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                bat 'mvn -B -DskipTests clean package'
+            }
+        }
+    }
+    post {
+        always {
+            junit (
+                allowEmptyResults:true,
+                testResults: '*test-reports/.xml'
+            )
+        }
+    }
+}

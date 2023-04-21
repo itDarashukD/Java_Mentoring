@@ -1,0 +1,43 @@
+jar {
+    manifest {
+        attributes 'Main-Class': 'com.builders.admin.AdminEntryPoint'
+    }
+}
+
+allprojects {
+    group = 'com.example.gradle'
+    version = '0.1.0-SNAPSHOT'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+
+    implementation project(':utils')
+    implementation project(':services')
+}
+
+test {
+    useJUnitPlatform()
+    test {
+        testLogging {
+            events "passed", "skipped", "failed", "standardOut", "standardError"
+        }
+    }
+}
+
+task createFatJar(type: Jar){
+manifest {
+    attributes 'Main-Class': 'com.builders.admin.AdminEntryPoint'
+}
+    baseName = 'fatJar'
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    with jar
+}
+

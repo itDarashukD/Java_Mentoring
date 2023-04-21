@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: security_applications
+  profiles:
+    active: dev
+
+server:
+  port: 8081
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/security
+    username: postgres
+    password: root
+
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+
+mybatis:
+  config-location : "classpath:mybatis-config.xml"
+

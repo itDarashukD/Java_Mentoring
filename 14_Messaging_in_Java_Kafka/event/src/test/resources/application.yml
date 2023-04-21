@@ -1,0 +1,37 @@
+spring:
+  application:
+    name: event-service
+
+server:
+  port: 8083
+
+---
+spring:
+  config:
+    activate:
+      on-profile: kafka-test
+
+  datasource:
+    driver-class-name: org.hsqldb.jdbc.JDBCDriver
+    url: jdbc:hsqldb:mem:localdb;sql.syntax_pgs=true;DB_CLOSE_DELAY=-1
+    username:
+    password:
+    initialize: true
+    platform: hsqldb
+
+  kafka:
+    serverAddress: 127.0.0.1:9093
+    consumer:
+      auto-offset-reset: earliest
+      group-id: myGroupId
+    createTopic: testCreateTopic
+    updateTopic: testUpdateTopic
+    deleteTopic: testDeleteTopic
+
+test:
+  partitions-number: 1
+  replication-factor: 1
+
+sql:
+  syntax_pgs: true
+  lowercase_ident=true:

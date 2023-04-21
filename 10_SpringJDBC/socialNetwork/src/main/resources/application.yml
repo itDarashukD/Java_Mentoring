@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: root
+
+server:
+  port: 8081
+
+maxThreadPoolSize: 2
+tableCount: 2
+columnsCount: 2
+typeCount: 2
+desireRowCount: 2
+desireNumberOfTableToInserts: 4

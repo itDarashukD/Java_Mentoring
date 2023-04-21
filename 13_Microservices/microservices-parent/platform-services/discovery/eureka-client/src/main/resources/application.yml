@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: spring-cloud-eureka-client
+server:
+  port: 0
+
+---
+spring:
+  config:
+    activate.on-profile: dev
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
+  instance:
+    preferIpAddress: true
+
+---
+spring:
+  config:
+    activate.on-profile: docker
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://192.168.99.111:8761/eureka}

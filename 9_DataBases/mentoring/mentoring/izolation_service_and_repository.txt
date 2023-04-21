@@ -1,0 +1,43 @@
+
+    @Insert("Insert into izolation (name, age) values (#{name},#{age})")
+    void addIsolation(Izolation izolation);
+
+    @Update("Update izolation set age= #{age} where name= #{name}")
+    void updateIsolation(Izolation izolation);
+
+    @Select("SELECT * FROM izolation where name= #{name}")
+    Izolation findIzolation(@Param("name") String name);
+
+
+
+
+
+
+    public void addIsolation(Izolation izolation) {
+        repository.addIsolation(izolation);
+    }
+
+    public void updateIzolation(Izolation izolation) {
+        repository.updateIsolation(izolation);
+    }
+
+    public Izolation getIzolation(String name) {
+        return repository.findIzolation(name);
+    }
+
+
+
+
+        @Insert("CREATE INDEX multi_index On student (id,surname)")
+        void setStudentTableIndex();
+
+
+    public void setIndex() {
+        repository.setStudentTableIndex();
+    }
+
+
+    @Test
+    public void setIndex() {
+        service.setIndex();
+    }

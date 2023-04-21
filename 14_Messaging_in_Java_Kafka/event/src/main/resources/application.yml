@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: event-service
+
+  profiles:
+    active : dev
+
+server:
+  port: 8082
+
+---
+spring:
+  config:
+    activate:
+      on-profile:  dev
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/events
+    username: postgres
+    password: root
+
+  kafka:
+    serverAddress: 127.0.0.1:9092
+    createTopic: create-event-notification
+    updateTopic: update-event-notification
+    deleteTopic: delete-event-notification

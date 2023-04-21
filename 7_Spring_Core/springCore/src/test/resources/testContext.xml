@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xmlns:p="http://www.springframework.org/schema/p"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+  <context:component-scan base-package="test.java.com.spring.training"/>
+  <context:property-placeholder location="classpath:applicationTest.properties"/>
+
+  <import resource="classpath:applicationContextFacade.xml"/>
+  <import resource="classpath:applicationContextStorages.xml"/>
+
+  <bean id="customBeanPostProcessor"
+    class="com.spring.training.configuration.CustomBeanPostProcessor">
+  </bean>
+
+  <bean id="testEventWithId1111" class="com.spring.training.model.Event"
+    p:id="1111"
+    p:title="testTitle111"
+    p:date="May 04 09:51:52 CDT 2009"/>
+
+  <bean id="testEventWithId2222" class="com.spring.training.model.Event"
+    p:id="2222"
+    p:title="testTitle222"
+    p:date="May 04 09:51:52 CDT 2009"/>
+
+  <bean id="testEventWithId333" class="com.spring.training.model.Event"
+    p:id="3333"
+    p:title="testTitle333"
+    p:date="May 03 03:53:53 CDT 2003"/>
+
+  <bean id="testTicketWithId1111" class="com.spring.training.model.Ticket"
+    p:id="1111"
+    p:eventId="111"
+    p:userId="111"
+    p:place="1"
+    p:category="STANDARD"/>
+
+  <bean id="testTicketWithId2222" class="com.spring.training.model.Ticket"
+    p:id="2222"
+    p:eventId="2222"
+    p:userId="2222"
+    p:place="2"
+    p:category="BAR"/>
+
+  <bean id="testTicketWithId3333" class="com.spring.training.model.Ticket"
+    p:id="3333"
+    p:eventId="3333"
+    p:userId="3333"
+    p:place="3"
+    p:category="BAR"/>
+
+  <bean id="testTicketWithId4444" class="com.spring.training.model.Ticket"
+    p:id="4444"
+    p:eventId="4444"
+    p:userId="4444"
+    p:place="3"
+    p:category="BAR"/>
+
+  <bean id="testUserWithId1111" class="com.spring.training.model.User"
+    p:id="1111"
+    p:name="testDzmitry"
+    p:email="testDzmitry@email.com"/>
+
+  <bean id="testUserWithId2222" class="com.spring.training.model.User"
+    p:id="2222"
+    p:name="testSergey"
+    p:email="testSergey@email.com"/>
+
+  <bean id="testUserWithId3333" class="com.spring.training.model.User"
+    p:id="3333"
+    p:name="testVika"
+    p:email="testSergey@email.com"/>
+
+  <bean id="testUserWithId4444" class="com.spring.training.model.User"
+    p:id="4444"
+    p:name="testUlad"
+    p:email="testUlad@email.com"/>
+
+  <bean id="eventDao" class="com.spring.training.dao.impl.EventDaoImpl">
+    <constructor-arg ref="eventStorage"/>
+  </bean>
+  <bean id="ticketDao" class="com.spring.training.dao.impl.TicketDaoImpl">
+    <constructor-arg ref="ticketStorage"/>
+  </bean>
+  <bean id="userDao" class="com.spring.training.dao.impl.UserDaoImpl">
+    <constructor-arg ref="userStorage"/>
+  </bean>
+
+  <bean id="eventService" class="com.spring.training.service.impl.EventServiceImpl">
+    <constructor-arg ref="eventDao"/>
+  </bean>
+  <bean id="ticketService" class="com.spring.training.service.impl.TicketServiceImpl">
+    <constructor-arg ref="ticketDao"/>
+  </bean>
+  <bean id="userService" class="com.spring.training.service.impl.UserServiceImpl">
+    <constructor-arg ref="userDao"/>
+  </bean>
+
+</beans>

@@ -1,0 +1,1 @@
+properties=classpath:applicationTest.properties

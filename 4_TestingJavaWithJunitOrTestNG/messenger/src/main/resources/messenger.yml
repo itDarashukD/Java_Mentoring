@@ -1,0 +1,13 @@
+name: name3
+year: 2023
+
+systemProp:
+  file:
+     encoding: UTF-8
+  sun:
+     jnu:
+        encoding : UTF-8
+
+path:
+  local:
+    storage: qqq

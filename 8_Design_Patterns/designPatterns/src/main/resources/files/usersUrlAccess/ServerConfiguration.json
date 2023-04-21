@@ -1,0 +1,15 @@
+{
+  "port": "8080",
+  "protocol": "HTTP/1.1",
+  "connectionTimeout": "20000",
+  "redirectPort": "8443",
+  "hostName": "localhost",
+
+  "userAccessSettings": {
+    "Sergey": "ADMIN",
+    "Dzmitry": "DEVELOPER",
+    "Uliana": "USER"
+  }
+}
+
+

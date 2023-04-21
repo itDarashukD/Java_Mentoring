@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:context="http://www.springframework.org/schema/context"
+  xmlns:p="http://www.springframework.org/schema/p"
+  xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+  <context:component-scan base-package="com.spring.training"/>
+  <context:property-placeholder location="classpath:application.properties"/>
+
+  <import resource="classpath:applicationContextFacade.xml"/>
+  <import resource="classpath:applicationContextStorages.xml"/>
+  <import resource="classpath:applicationContextBeanExample.xml"/>
+
+  <bean id="customBeanPostProcessor"
+    class="com.spring.training.configuration.CustomBeanPostProcessor">
+  </bean>
+
+  <bean id="event111" class="com.spring.training.model.Event"
+    p:id="111"
+    p:title="title111"
+    p:date="May 04 09:51:52 CDT 2009"/>
+
+  <bean id="event222" class="com.spring.training.model.Event"
+    p:id="222"
+    p:title="title222"
+    p:date="May 04 09:51:52 CDT 2009"/>
+
+  <bean id="ticket111" class="com.spring.training.model.Ticket"
+    p:id="111"
+    p:eventId="111"
+    p:userId="111"
+    p:place="1"
+    p:category="STANDARD"/>
+
+  <bean id="ticket222" class="com.spring.training.model.Ticket"
+    p:id="222"
+    p:eventId="222"
+    p:userId="222"
+    p:place="2"
+    p:category="BAR"/>
+
+  <bean id="user111" class="com.spring.training.model.User"
+    p:id="111"
+    p:name="Dzmitry"
+    p:email="Dzmitry@email.com"/>
+
+  <bean id="user222" class="com.spring.training.model.User"
+    p:id="222"
+    p:name="Sergey"
+    p:email="Sergey@email.com"/>
+
+
+  <bean id="eventDao" class="com.spring.training.dao.impl.EventDaoImpl">
+    <constructor-arg ref="eventStorage"/>
+  </bean>
+  <bean id="ticketDao" class="com.spring.training.dao.impl.TicketDaoImpl">
+    <constructor-arg ref="ticketStorage"/>
+  </bean>
+  <bean id="userDao" class="com.spring.training.dao.impl.UserDaoImpl">
+    <constructor-arg ref="userStorage"/>
+  </bean>
+
+  <bean id="eventService" class="com.spring.training.service.impl.EventServiceImpl">
+    <constructor-arg ref="eventDao"/>
+  </bean>
+  <bean id="ticketService" class="com.spring.training.service.impl.TicketServiceImpl">
+    <constructor-arg ref="ticketDao"/>
+  </bean>
+  <bean id="userService" class="com.spring.training.service.impl.UserServiceImpl">
+    <constructor-arg ref="userDao"/>
+  </bean>
+
+</beans>
